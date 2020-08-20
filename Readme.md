@@ -11,7 +11,7 @@ This repository contains:
 ### Binary Search Tree
 Binary Search Tree with add and remove methods without balancing (see AVL Tree).
 
-Includes two tests, one of these receives add ('a') and delete ('d') commands.
+Includes two tests, one of these receives add ('a') commands.
 
 ### AVL Tree
 Adelson-Velskii and Landis tree. Which means it balances itself.

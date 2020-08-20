@@ -20,8 +20,6 @@ int main( int argc, char* argv[] )
 
     if( op == 'a' )
       tree.Insert( v );
-    else if( op == 'd' )
-      tree.Erase( v );
 
     std::stringstream ss;
     ss << "bin_tree_" << count++ << ".png";

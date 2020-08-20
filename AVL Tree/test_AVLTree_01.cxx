@@ -9,6 +9,11 @@ typedef PUJ::AVLTree< unsigned long > TTree;
 // -------------------------------------------------------------------------
 int main( int argc, char* argv[] )
 {
+  if(argc < 3)
+  {
+    std::cout << "Usage: " << argv[0] << " weight max" << std::endl;
+    return(1); 
+  }
   unsigned long W = std::atol( argv[ 1 ] );
   unsigned long M = std::atol( argv[ 2 ] );
 

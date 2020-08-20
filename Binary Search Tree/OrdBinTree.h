@@ -34,7 +34,6 @@ namespace PUJ
       const Node* Find( const TValue& v ) const;
 
       Node* Insert( const TValue& v );
-      Node* Erase( const TValue& v );
 
     public:
       TValue m_Value;
@@ -48,8 +47,7 @@ namespace PUJ
 
     bool Find( const TValue& v ) const;
     bool Insert( const TValue& v );
-    bool Erase( const TValue& v );
-
+    
     unsigned int Height( ) const;
     unsigned int Weight( ) const;
 
@@ -64,6 +62,8 @@ namespace PUJ
   };
 
 } // ecapseman
+
+#include "OrdBinTree.hxx"
 
 #endif // __PUJ__OrdBinTree__h__
 

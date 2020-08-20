@@ -3,14 +3,54 @@
 
 #include <sstream>
 #include <queue>
+#include "OrdBinTree.h"
 
-const TValue& PUJ::OrdBinTree< _TValue >::Node::
+template<class _TValue>
+PUJ::OrdBinTree<_TValue>::OrdBinTree()
+{
+    this->m_Root = NULL;   
+}
+
+template<class _TValue>
+PUJ::OrdBinTree<_TValue>::Node::
+Node( const TValue& v )
+{
+    this->m_Left = NULL;
+    this->m_Right = NULL;
+    this->m_Value = v;
+}
+
+template<class _TValue>
+PUJ::OrdBinTree<_TValue>::~OrdBinTree()
+{
+    if(this->m_Root != NULL)
+    {
+        delete this->m_Root;
+    }
+}
+
+template<class _TValue>
+PUJ::OrdBinTree<_TValue>::Node::~Node()
+{
+    if(this->m_Left != NULL)
+    {
+        delete this->m_Left;
+    } 
+    if(this->m_Right != NULL)
+    {
+        delete this->m_Right;
+    }
+}
+
+template<class _TValue>
+const typename PUJ::OrdBinTree<_TValue>::TValue& PUJ::OrdBinTree< _TValue >::Node::
 GetValue( ) const
 {
     return (this->m_Value);
 }
 
-PUJ::OrdBinTree< _TValue >::Node* PUJ::OrdBinTree< _TValue >::Node::
+template<class _TValue>
+typename PUJ::OrdBinTree< _TValue >::Node* PUJ::OrdBinTree< _TValue >::Node::
 Insert( const TValue& v )
 {
     if(this->m_Value < v)
@@ -37,6 +77,7 @@ Insert( const TValue& v )
         return (NULL);
 }
 
+template<class _TValue>
 bool PUJ::OrdBinTree< _TValue >::Insert( const TValue& v )
 {
     if(this->m_Root != NULL)
@@ -49,6 +90,7 @@ bool PUJ::OrdBinTree< _TValue >::Insert( const TValue& v )
 
 }
 
+template<class _TValue>
 bool PUJ::OrdBinTree< _TValue >::Node::IsLeaf( ) const
 {
     if(this->m_Left == NULL && this->m_Right == NULL)
@@ -56,7 +98,8 @@ bool PUJ::OrdBinTree< _TValue >::Node::IsLeaf( ) const
     return false;
 }
 
-const PUJ::OrdBinTree< _TValue >::Node* PUJ::OrdBinTree< _TValue >::Node::
+template<class _TValue>
+const typename PUJ::OrdBinTree< _TValue >::Node* PUJ::OrdBinTree< _TValue >::Node::
 Find( const TValue& v ) const
 {
     if(this->m_Value < v)
@@ -76,6 +119,7 @@ Find( const TValue& v ) const
         return (this);
 }
 
+template<class _TValue>
 bool PUJ::OrdBinTree< _TValue >::Find( const TValue& v ) const
 {
     if(this->m_Root != NULL)
@@ -83,9 +127,10 @@ bool PUJ::OrdBinTree< _TValue >::Find( const TValue& v ) const
     return false;
 }
 
+template<class _TValue>
 unsigned int PUJ::OrdBinTree< _TValue >::Node::Weight( ) const
 {
-    unsigned int lw, rw;
+    unsigned int lw = 0, rw = 0;
     if(this->m_Left != NULL)
         lw = this->m_Left->Weight();
     if(this->m_Right != NULL)
@@ -93,6 +138,7 @@ unsigned int PUJ::OrdBinTree< _TValue >::Node::Weight( ) const
     return (1 + lw + rw);
 }
 
+template<class _TValue>
 unsigned int PUJ::OrdBinTree< _TValue >::Weight( ) const
 {
     if(this->m_Root != NULL)
@@ -102,9 +148,10 @@ unsigned int PUJ::OrdBinTree< _TValue >::Weight( ) const
 
 // -------------------------------------------------------------------------
 
+template<class _TValue>
 unsigned int PUJ::OrdBinTree< _TValue >::Node::Height( ) const
 {
-    unsigned int hr, hl;
+    unsigned int hr = 0, hl = 0;
     if(this->m_Left != NULL)
         hl = this->m_Left->Height();
     if(this->m_Right != NULL)
@@ -112,12 +159,14 @@ unsigned int PUJ::OrdBinTree< _TValue >::Node::Height( ) const
     return (1 + (hl>hr) ? hl : hr);
 }
 
+template<class _TValue>
 unsigned int PUJ::OrdBinTree< _TValue >::Height( ) const
 {
     if(this->m_Root != NULL)
             return (this->m_Root->Height());
     return 0;
 }
+
 
 // -------------------------------------------------------------------------
 template< class _TValue >
@@ -149,6 +198,7 @@ PrintInOrder( ) const
 
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
+
 
 template< class _TValue >
 void PUJ::OrdBinTree< _TValue >::Node::
@@ -204,6 +254,7 @@ PrintPreOrder( ) const
 	return;
 }
 
+template<class _TValue>
 void PUJ::OrdBinTree< _TValue >::Node::
 PrintLevels( ) const
 {
@@ -225,7 +276,7 @@ PrintLevels( ) const
 	}
 }
 
-
+template<class _TValue>
 void PUJ::OrdBinTree< _TValue >::
 PrintLevels( ) const
 {
@@ -239,7 +290,7 @@ std::string PUJ::OrdBinTree< _TValue >::Node::
 PrintAsPNG( ) const
 {
   std::stringstream str;
-  Node* children[ 2 ];
+  Node* nodes[ 2 ];
   nodes[ 0 ] = this->m_Left;
   nodes[ 1 ] = this->m_Right;
 
